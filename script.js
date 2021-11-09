@@ -21,12 +21,17 @@ var questions=[
         "question":["Actions "," louder than "],
         "answears":["speak","words"],
         "choices":["motivation","words","shouts","phrases","speak"]
+    },
+    {
+        "question":["Give someone the "," of the "],
+        "answears":["benefit","doubt"],
+        "choices":["doubt","advantage","disadvantage","benefit"]
     }
 ]
 
 function loadQuestion(){
     let page=document.getElementById("page");
-    page.innerText=`${currentQuestion+1}/4`;
+    page.innerText=`${currentQuestion+1}/${questions.length}`;
     let words=document.getElementById("words");
     words.innerText="";
     for(let j=0;j<questions[currentQuestion].choices.length;j++){
@@ -53,10 +58,6 @@ function loadQuestion(){
                 field.className="field";
                 field.id=`field${currentQuestion}${fieldNumber}`;
                 fieldNumber++;
-                // field.ondragover=event=>event.preventDefault();
-                // field.ondrop = event =>{
-                //     drop(event);
-                //     console.log(field.id);}
                 q.append(field);
             }
             
@@ -95,7 +96,7 @@ function nextQuestion(){
             rightChoices+=2;
             totalChoices+=2;
             currentQuestion++;
-            if(currentQuestion===4){
+            if(currentQuestion===questions.length){
                 loadResult(rightChoices,totalChoices);                
             }
             else loadQuestion();
